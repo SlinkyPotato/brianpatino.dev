@@ -18,10 +18,6 @@ export default class RedisUtil {
         console.error(error);
       });
 
-      client.on('connect', () => {
-        console.log('Redis connected');
-      });
-
       client.on('end', () => {
         console.log('Redis disconnected');
       });
