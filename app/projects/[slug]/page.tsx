@@ -4,7 +4,7 @@ import { Mdx } from '@/app/components/mdx';
 import { Header } from './header';
 import './mdx.css';
 import { ReportView } from './view';
-import { connectRedis } from '@/util/redis';
+import RedisUtil from '@/util/redis';
 
 export const revalidate = 60;
 
@@ -23,7 +23,7 @@ export async function generateStaticParams(): Promise<Props['params'][]> {
 }
 
 export default async function PostPage({ params }: Props) {
-  const redis = await connectRedis();
+  await RedisUtil.connect();
   const slug = params?.slug;
   const project = allProjects.find((project) => project.slug === slug);
 
@@ -31,7 +31,7 @@ export default async function PostPage({ params }: Props) {
     notFound();
   }
 
-  const views = Number(await redis.get(`pageviews:projects:${slug}`)) ?? 0;
+  const views = Number(RedisUtil.client ? await RedisUtil.client.get(`pageviews:projects:${slug}`) : 0) ?? 0;
 
   return (
     <div className="bg-zinc-50 min-h-screen">

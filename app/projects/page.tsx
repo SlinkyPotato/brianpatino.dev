@@ -4,19 +4,18 @@ import { Navigation } from '../components/nav';
 import { Card } from '../components/card';
 import { Article } from './article';
 import { Eye } from 'lucide-react';
-import { connectRedis } from '@/util/redis';
+import RedisUtil from '@/util/redis';
 
 export const revalidate = 60;
 export default async function ProjectsPage() {
-  const redis = await connectRedis();
-
+  await RedisUtil.connect();
   const views: Record<string, number> = {};
   for (let p of allProjects) {
-    views[p.slug] = Number(await redis.get(`pageviews:projects:${p.slug}`)) ?? 0;
+    views[p.slug] = Number(RedisUtil.client ? await RedisUtil.client.get(`pageviews:projects:${p.slug}`): 0) ?? 0;
   }
 
   const featured = allProjects.find((project) => project.slug === 'degen')!;
-  const top2 = allProjects.find((project) => project.slug === 'fullstack-blog')!;
+  const top2 = allProjects.find((project) => project.slug === 'fullstack-open')!;
   const top3 = allProjects.find((project) => project.slug === 'badge-buddy')!;
   const sorted = allProjects
     .filter((p) => p.published)
@@ -31,7 +30,6 @@ export default async function ProjectsPage() {
 				new Date(a.date ?? Number.POSITIVE_INFINITY).getTime()
     );
 
-  console.log(...allProjects.map((p) => p.slug));
   return (
     <div className="relative pb-16">
       <Navigation />

@@ -1,8 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { connectRedis } from '@/util/redis';
+import RedisUtil from '@/util/redis';
 
 export async function POST(req: NextRequest): Promise<NextResponse> {
-  const redis = await connectRedis();
+  await RedisUtil.connect();
+  if (!RedisUtil.client ) {
+    return new NextResponse('Redis not connected', { status: 500 });
+  }
 
   if (req.headers.get('Content-Type') !== 'application/json') {
     return new NextResponse('must be json', { status: 400 });
@@ -28,7 +31,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       .join('');
 
     // deduplicate the ip for each slug
-    const isNew = await redis.set(`deduplicate:${hash}:${slug}`, 'true', {
+    const isNew = await RedisUtil.client.set(`deduplicate:${hash}:${slug}`, 'true', {
       NX: true,
       EX: 24 * 60 * 60,
     });
@@ -37,7 +40,7 @@ export async function POST(req: NextRequest): Promise<NextResponse> {
       new NextResponse(null, { status: 202 });
     }
   }
-  await redis.incr(`pageviews:projects:${slug}`);
+  await RedisUtil.client.incr(`pageviews:projects:${slug}`);
   console.log('incremented pageview for slug', slug);
   return new NextResponse(null, { status: 202 });
 }
