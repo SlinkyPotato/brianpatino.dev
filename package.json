@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "env:pull": "dotenv-vault pull",
+    "env:push": "dotenv-vault push"
   },
   "dependencies": {
     "@mdx-js/loader": "^2.3.0",
