@@ -39,6 +39,7 @@ export const metadata: Metadata = {
   twitter: {
     title: 'SlinkyPotato_',
     card: 'summary_large_image',
+    site: '@SlinkyPotato_',
   },
   icons: {
     shortcut: '/favicon.png',
