@@ -1,3 +1,5 @@
+![GitHub deployments](https://img.shields.io/github/deployments/SlinkyPotato/brianpatino.dev/production)
+
 <div align="center">
     <a href="https://brianpatino.dev"><h1 align="center">brianpatino.dev</h1></a>
     
