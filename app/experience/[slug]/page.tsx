@@ -30,7 +30,7 @@ export default async function PostPage({ params }: Props) {
     notFound();
   }
 
-  const views = Number(RedisUtil.client ? await RedisUtil.client.get(`pageviews:projects:${slug}`) : 0) ?? 0;
+  const views = Number(RedisUtil.client ? await RedisUtil.client.get(`pageviews:experiences:${slug}`) : 0) ?? 0;
 
   return (
     <div className="bg-zinc-50 min-h-screen">

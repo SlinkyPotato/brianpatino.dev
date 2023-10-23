@@ -8,7 +8,7 @@ const socials = [
   {
     icon: <Linkedin size={20} />,
     href: 'https://www.linkedin.com/in/brianpatino/',
-    label: 'LinkedIN',
+    label: 'LinkedIn',
     handle: 'brianpatino',
     id: 'linkedin'
   },
@@ -26,13 +26,13 @@ const socials = [
     handle: '@SlinkyPotato_',
     id: 'twitter'
   },
-  {
-    icon: <Mail size={20} />,
-    href: 'mailto:patinobrian@gmail.com',
-    label: 'Email',
-    handle: 'patinobrian@gmail.com',
-    id: 'email'
-  },
+  // {
+  //   icon: <Mail size={20} />,
+  //   href: 'mailto:patinobrian@gmail.com',
+  //   label: 'Email',
+  //   handle: 'patinobrian@gmail.com',
+  //   id: 'email'
+  // },
 ];
 
 export default function Example() {

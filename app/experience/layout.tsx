@@ -1,4 +1,4 @@
-export default function ProjectsLayout({
+export default function ExperienceLayout({
   children,
 }: { children: React.ReactNode }) {
   return (

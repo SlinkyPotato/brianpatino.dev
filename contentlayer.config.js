@@ -70,25 +70,9 @@ export const Experience = defineDocumentType(() => ({
   computedFields,
 }));
 
-export const Page = defineDocumentType(() => ({
-  name: 'Page',
-  filePathPattern: 'pages/**/*.mdx',
-  contentType: 'mdx',
-  fields: {
-    title: {
-      type: 'string',
-      required: true,
-    },
-    description: {
-      type: 'string',
-    },
-  },
-  computedFields,
-}));
-
 export default makeSource({
   contentDirPath: './content',
-  documentTypes: [Page, Project, Experience],
+  documentTypes: [Project, Experience],
   mdx: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
