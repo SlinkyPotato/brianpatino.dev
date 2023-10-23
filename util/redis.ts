@@ -14,18 +14,10 @@ export default class RedisUtil {
         },
       });
 
-      client.on('error', (error) => {
-        console.error(error);
-      });
-
-      client.on('end', () => {
-        console.log('Redis disconnected');
-      });
-
       try {
         RedisUtil.client = await client.connect();
       } catch (error) {
-        console.error('not connecting');
+        console.error('failed to connect redis');
       }
     }
   };
