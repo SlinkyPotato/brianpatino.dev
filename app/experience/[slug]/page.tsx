@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation';
-import { allProjects } from 'contentlayer/generated';
+import { allExperiences } from 'contentlayer/generated';
 import { Mdx } from '@/app/components/mdx';
 import { Header } from './header';
 import './mdx.css';
@@ -15,31 +15,30 @@ type Props = {
 };
 
 export async function generateStaticParams(): Promise<Props['params'][]> {
-  return allProjects
-    .filter((p) => p.published)
-    .map((p) => ({
-      slug: p.slug,
+  return allExperiences
+    .map((experience) => ({
+      slug: experience.slug,
     }));
 }
 
 export default async function PostPage({ params }: Props) {
   await RedisUtil.connect();
   const slug = params?.slug;
-  const project = allProjects.find((project) => project.slug === slug);
+  const experience = allExperiences.find((experience) => experience.slug === slug);
 
-  if (!project) {
+  if (!experience) {
     notFound();
   }
 
-  const views = Number(RedisUtil.client ? await RedisUtil.client.get(`pageviews:projects:${slug}`) : 0) ?? 0;
+  const views = Number(RedisUtil.client ? await RedisUtil.client.get(`pageviews:experiences:${slug}`) : 0) ?? 0;
 
   return (
     <div className="bg-zinc-50 min-h-screen">
-      <Header project={project} views={views} />
-      <ReportView slug={project.slug} />
+      <Header experience={experience} views={views} />
+      <ReportView slug={experience.slug} />
 
       <article className="px-4 py-12 mx-auto prose prose-zinc prose-quoteless">
-        <Mdx code={project.body.code} />
+        <Mdx code={experience.body.code} />
       </article>
     </div>
   );

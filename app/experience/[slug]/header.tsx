@@ -4,31 +4,17 @@ import Link from 'next/link';
 import React, { useEffect, useRef, useState } from 'react';
 
 type Props = {
-	project: {
-		url?: string;
+	experience: {
 		title: string;
-		description: string;
-		repository?: string;
+		location: string;
 	};
 	views: number;
 };
-export const Header: React.FC<Props> = ({ project, views }) => {
+export const Header: React.FC<Props> = ({ experience, views }) => {
   const ref = useRef<HTMLElement>(null);
   const [isIntersecting, setIntersecting] = useState(true);
 
   const links: { label: string; href: string }[] = [];
-  if (project.repository) {
-    links.push({
-      label: 'GitHub',
-      href: `https://github.com/${project.repository}`,
-    });
-  }
-  if (project.url) {
-    links.push({
-      label: 'Website',
-      href: project.url,
-    });
-  }
   useEffect(() => {
     if (!ref.current) return;
     const observer = new IntersectionObserver(([entry]) =>
@@ -96,7 +82,7 @@ export const Header: React.FC<Props> = ({ project, views }) => {
           </div>
 
           <Link
-            href="/projects"
+            href="/experience"
             className={`duration-200 hover:font-medium ${
               isIntersecting
                 ? ' text-zinc-400 hover:text-zinc-100'
@@ -111,10 +97,10 @@ export const Header: React.FC<Props> = ({ project, views }) => {
         <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center flex flex-col items-center">
           <div className="mx-auto max-w-2xl lg:mx-0">
             <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl font-display">
-              {project.title}
+              {experience.title}
             </h1>
             <p className="mt-6 text-lg leading-8 text-zinc-300">
-              {project.description}
+              {experience.location}
             </p>
           </div>
 
