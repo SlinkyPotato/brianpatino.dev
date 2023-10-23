@@ -1,24 +1,23 @@
 import "../global.css";
-import { Inter } from "@next/font/google";
-import LocalFont from "@next/font/local";
+import { Inter } from "next/font/google";
+import LocalFont from "next/font/local";
 import { Metadata } from "next";
 import { Analytics } from "./components/analytics";
 
 export const metadata: Metadata = {
 	title: {
-		default: "chronark.com",
-		template: "%s | chronark.com",
+		default: "brianpatino.dev",
+		template: "%s | brianpatino.dev",
 	},
-	description: "Software engineer at upstash.com and founder of planetfall.io",
+	description: "Software engineer at Synchrony Financial and founder of SolidChain",
 	openGraph: {
-		title: "chronark.com",
-		description:
-			"Software engineer at upstash.com and founder of planetfall.io",
-		url: "https://chronark.com",
-		siteName: "chronark.com",
+		title: "brianpatino.dev",
+		description: "Software engineer at Synchrony Financial and founder of SolidChain",
+		url: "https://brianpatino.dev",
+		siteName: "brianpatino.dev",
 		images: [
 			{
-				url: "https://chronark.com/og.png",
+				url: "https://brianpatino.dev/og.png",
 				width: 1920,
 				height: 1080,
 			},
@@ -38,7 +37,7 @@ export const metadata: Metadata = {
 		},
 	},
 	twitter: {
-		title: "Chronark",
+		title: "SlinkyPotato_",
 		card: "summary_large_image",
 	},
 	icons: {

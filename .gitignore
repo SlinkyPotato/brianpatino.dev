@@ -37,3 +37,7 @@ yarn-error.log*
 next-env.d.ts
 
 .contentlayer
+.env*
+.flaskenv*
+!.env.project
+!.env.vault
