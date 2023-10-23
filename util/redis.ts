@@ -3,7 +3,7 @@ import { RedisClientType, createClient } from 'redis';
 const connectRedis = async () => {
   const client = createClient({
     socket: {
-      host: process.env.REDIS_HOST,
+      host: process.env.REDIS_HOST ?? 'localhost',
       port: parseInt(process.env.REDIS_PORT ?? '6379'),
     },
   });

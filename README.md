@@ -16,7 +16,7 @@ cd brianpatino.dev
 ```
 
 
-Create a `.env` file similar to [`.env.example`](https://github.com/chronark/chronark.com/blob/main/.env.example).
+Create a `.env` file.
 
 Then install dependencies and run the development server:
 ```bash
